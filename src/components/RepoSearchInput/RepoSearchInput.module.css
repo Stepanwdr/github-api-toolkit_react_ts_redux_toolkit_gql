@@ -1,0 +1,35 @@
+.input__container{
+   position: relative;
+   z-index: 1;
+   
+}
+.input__container input{
+ border: none;
+   padding: 15px;
+   outline: none;
+   background-color: #010409;
+   color:white;
+   width: 100%;
+   border-radius: 20px;
+   outline: 2px solid var(--repo-text-dark);
+}
+.input__container input:focus{
+outline: 2px solid #0969da;
+}
+.clear__btn{
+  position: absolute;
+  right: 10px;
+  top: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: gray;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 10px;
+}

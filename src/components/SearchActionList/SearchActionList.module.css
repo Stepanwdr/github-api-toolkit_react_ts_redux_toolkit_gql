@@ -1,0 +1,32 @@
+
+.list_container{
+    position: absolute;
+    padding-top: 50px;
+    background-color: #242424;
+    top: 88px;
+    max-width: 1270px;
+    width: 97%;
+    border-radius: 10px;
+    border: 1px solid var(--repo-text-dark);
+}
+.search__all{
+display: flex;
+justify-content: space-between;
+}
+.list{
+
+}
+.search__value__btn{
+ color: white;
+ width: 100%;
+ border:none;
+ outline: none;
+ cursor: pointer;
+ background-color: transparent;
+ display: flex;
+ justify-content: space-between;
+ padding: 10px;
+}
+.search__value__btn span{
+color: var(--repo-text-dark);
+}

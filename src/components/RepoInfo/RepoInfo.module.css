@@ -1,0 +1,47 @@
+.info__container{
+  
+}
+.repo__name{
+    color: #0969da;
+}
+.info__top{
+border-bottom: 1px solid var(--repo-text-dark) ;;
+}
+.owner{
+display: flex;
+}
+         
+.owner__avatar{
+width: 80px;
+height: 80px;
+border-radius: 50%;
+background-color: white;
+}
+.owner__link{
+color: #0969da;
+}
+.back__btn{
+    color: white;
+    font-size: 16px;
+    color:var(--repo-text-dark) ;
+    text-decoration: none;
+    border-radius: 50%;
+}
+.label{
+    font-size: 12px;
+}
+.languages{
+
+}
+
+.languages span{
+  margin-right: 5px;
+  border: 1px solid var(--repo-text-dark);
+  padding: 5px;
+  border-radius: 10px;
+  font-size: 12px;
+}
+
+.title{
+    color:var(--repo-text-dark) ;
+}

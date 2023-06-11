@@ -1,0 +1,45 @@
+.paginator__container {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.page__btn {
+    border-radius: 50%;
+    border: none;
+    min-width: 30px;
+    min-height: 30px;
+    text-align: center;
+    margin-right: 2px;
+    cursor: pointer;
+    background-color: transparent;
+    color: white;
+}
+
+.page__btn:hover {
+    background-color: rgb(58, 58, 58);
+    color: antiquewhite;
+}
+
+.next__btn {}
+
+.prev__btn {}
+
+.btn {
+    border: none;
+    color: rgb(131, 131, 131);
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.selected {
+    background-color: #0969da;
+    color: white
+}
+.selected:hover{
+    background-color: #0969da;
+}
+
+.last_page {
+    margin-left: 10px;
+}

@@ -1,0 +1,30 @@
+nav{
+display: flex;
+align-items: center;
+
+}
+.nav__list{
+display: flex;
+align-items: center;
+column-gap: 10px;
+}
+.nav__item{
+    color: rgb(110, 110, 110);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+.user{
+display: flex;
+align-items: center;
+justify-content: center;
+row-gap: 5px;
+cursor: pointer;
+color: rgb(110, 110, 110);
+}
+.user img{
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
