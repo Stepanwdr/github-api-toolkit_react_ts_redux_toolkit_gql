@@ -14,7 +14,7 @@ const RepoPage: FC = () => {
             if (repoOwner && repoName) {
                   dispatch(getReposInfo(repoOwner, repoName))
             }
-      }, [repoOwner])
+      }, [repoName])
 
       return <div className={styles.main}>
             <RepoInfo repo={currentReposInfo} />

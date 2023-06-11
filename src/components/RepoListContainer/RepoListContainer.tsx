@@ -145,7 +145,7 @@ const RepoListContainer: FC = () => {
     }
   }, [])
 
-  if (error) return <p>Error :</p>;
+  if (error) return <p>Error :{error}</p>;
 
   return <div className={styles.list__container}>
     <RepoSearchInput
@@ -170,7 +170,7 @@ const RepoListContainer: FC = () => {
             .slice(startPage, endPage)
             .map((node: any, index: number) => {
               const repo = node.node
-              return <Fragment key={repo.pushedAt}><span>{index + 1}</span><Repo repo={repo}  /></Fragment>
+              return <Fragment key={repo.pushedAt}><span>{index + 1}</span><Repo repo={repo}/></Fragment>
             })
       }
     </ul>
