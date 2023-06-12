@@ -1,7 +1,7 @@
 import { userServices } from '../../../services/userServices';
 import { authSlice } from '../authSlice';
 import { AppDispatch } from '../../store';
-export const getUser = () => {
+export const getUser = ():any => {
   return async (dispatch: AppDispatch): Promise<any> => {
     try {
       const res = await userServices.fetchGetUser();

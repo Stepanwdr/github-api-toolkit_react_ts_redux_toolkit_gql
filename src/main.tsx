@@ -8,13 +8,12 @@ import { Provider } from 'react-redux';
 import { setupStore } from './store/store';
 import Authorization from './pages/Authorization/Authorization';
 import { client } from './graphql';
-import App from './App';
 const store = setupStore()
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Authorization />,
-  },
+ },
   {
     path: "/:repoOwner",
     element: <Home />,
@@ -27,9 +26,8 @@ export const router = createBrowserRouter([
 ]);
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <Provider store={store}>
-      <RouterProvider router={router} />
       <ApolloProvider client={client}>
-        <App/>
+      <RouterProvider router={router} />
       </ApolloProvider>
     </Provider>
 )
