@@ -3,7 +3,6 @@ import avatarImg from "../../assets/images/avatar.png"
 import styles from './RepoInfo.module.css'
 import { Link } from "react-router-dom"
 import formatDate from "../../helpers/formatDate"
-import { useAppSelector } from "../../hooks/redux"
 interface RepoInfoProps {
     repo: any
 }

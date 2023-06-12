@@ -2,10 +2,18 @@ import { FC } from "react"
 import styles from "./Navbar.module.css"
 import { useAppSelector } from "../../../hooks/redux"
 import isEmpty from "../../../helpers/isEmpty"
+import { authSlice } from "../../../store/reducers/authSlice"
+import { useDispatch } from "react-redux"
+
 
 const Navbar: FC = () => {
+  const dispatch=useDispatch()
   const { user } = useAppSelector(state => state.authSlice)
-  
+const logOutUser=()=>{
+  console.log("1212")
+ dispatch(authSlice.actions.logOut())
+ localStorage.clear()
+}
   if (isEmpty(user)) {
     return null
   }
@@ -16,7 +24,7 @@ const Navbar: FC = () => {
         <span>{user.login}</span>
       </li>
       <li className={`${styles.login} ${styles.nav__item}`}
-        onClick={() => console.log("log")}
+        onClick={logOutUser}
       >
         <span>Logout</span>
       </li>

@@ -127,10 +127,10 @@ const RepoListContainer: FC = () => {
     dispatch(searchRepos(searchData));
   }
   useMemo(() => {
-    if (!searchValue) {
+    if (!searchValue && !isEmpty(user)) {
     cleareFilter()
     }
-  }, [searchValue])
+  }, [searchValue,user])
 
   useMemo(() => {
     const repoData = getStoredData()

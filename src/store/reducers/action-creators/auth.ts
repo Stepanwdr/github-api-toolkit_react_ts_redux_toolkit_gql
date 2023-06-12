@@ -15,7 +15,4 @@ export const getUser = ():any => {
     }
   };
 };
-export const logoutUser=()=>{
- 
-}
 
