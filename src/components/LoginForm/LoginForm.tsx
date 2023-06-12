@@ -1,16 +1,16 @@
 import { FC, SyntheticEvent, useState } from "react";
 import styles from "./LoginForm.module.css"
-import { token } from "../../consts/token";
-
 
 interface LoginFormProps {
     onLogin: (token: string) => void
 }
 const LoginForm: FC<LoginFormProps> = ({ onLogin }) => {
-    const [tokenValue, setTokenValue] = useState(token)
+    const [tokenValue, setTokenValue] = useState('')
     const handleSubmit = async (e: SyntheticEvent) => {
         e.preventDefault();
-        onLogin(tokenValue);
+        if(tokenValue.trim()){
+            onLogin(tokenValue);
+        }
     };
     return (
         <div className={styles.form_container}>

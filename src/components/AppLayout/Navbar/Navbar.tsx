@@ -1,11 +1,14 @@
 import { FC } from "react"
 import styles from "./Navbar.module.css"
-import { IUser } from "../../../types/IUser"
-interface NavbarProps {
-  user:IUser
-  logOut:()=>void
-}
-const Navbar: FC<NavbarProps> = ({ user,logOut }) => {
+import { useAppSelector } from "../../../hooks/redux"
+import isEmpty from "../../../helpers/isEmpty"
+
+const Navbar: FC = () => {
+  const { user } = useAppSelector(state => state.authSlice)
+
+  if (isEmpty(user)) {
+    return null
+  }
   return <nav className={styles.nav}>
     <ul className={styles.nav__list}>
       <li className={`${styles.nav__item} ${styles.user}`}>
@@ -13,9 +16,9 @@ const Navbar: FC<NavbarProps> = ({ user,logOut }) => {
         <span>{user.login}</span>
       </li>
       <li className={`${styles.login} ${styles.nav__item}`}
-      onClick={logOut}
+        onClick={() => console.log("log")}
       >
-          <span>Logout</span>
+        <span>Logout</span>
       </li>
     </ul>
   </nav>

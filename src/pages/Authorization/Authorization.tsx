@@ -1,4 +1,4 @@
-import { FC, useEffect, useMemo } from "react";
+import { FC, useEffect } from "react";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import styles from "./Authorization.module.css"
 import Logo from "../../components/Logo/Logo";
@@ -6,28 +6,18 @@ import useLocalStorage from "../../hooks/useLocalStorage";
 import { useDispatch } from "react-redux";
 import { authSlice } from "../../store/reducers/authSlice";
 import { getUser } from "../../store/reducers/action-creators/auth";
-import { useNavigate } from "react-router-dom";
-import { useAppSelector } from "../../hooks/redux";
-import isEmpty from "../../helpers/isEmpty";
 
 const Authorization: FC = () => {
-   const navigate = useNavigate()
+   const dispatch = useDispatch()
    const [_, setToken, getToken] = useLocalStorage('token', '')
-   const {user}=useAppSelector(state=>state.authSlice)
+   
    const login = (token: string) => {
       setToken(token)
-      console.log(token)
       dispatch(authSlice.actions.setAuth(true))
       dispatch(authSlice.actions.setToken(token))
-        dispatch( getUser())
-        navigate(`/${user.login}`)
-        }
-   const dispatch = useDispatch()
-   useMemo(() => {
-      if (isEmpty(user)) {
-         navigate(`/${user.login}`)
-      }
-   }, [user])
+      dispatch(getUser())
+   }
+
    useEffect(() => {
       const storedToken = getToken()
       if (storedToken) {
@@ -35,11 +25,11 @@ const Authorization: FC = () => {
          dispatch(authSlice.actions.setToken(storedToken))
       }
    }, [])
-     
+   
    return <div className={styles.auth__wrapper}>
       <Logo />
       <p>Login with your</p>
-      <p>Github Personal Access Token or use This</p>
+      <p>Github Personal Access Token </p>
       <LoginForm onLogin={login} />
    </div>
 }

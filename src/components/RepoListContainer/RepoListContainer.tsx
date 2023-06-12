@@ -4,28 +4,28 @@ import Repo from "./Repo/Repo";
 import RepoSearchInput from "../RepoSearchInput/RepoSearchInput";
 import { useAppSelector } from "../../hooks/redux";
 import { useDispatch } from "react-redux";
-
 import Paginator from "../Paginator/Paginator";
 import SearchActionList from "../SearchActionList/SearchActionList";
 import { ISearch } from "../../model/ISearch";
-import { logedUser } from "../../consts/token";
+
 import useLocalStorage from "../../hooks/useLocalStorage";
 import { IStorage } from "../../types/IStorage";
 import isEmpty from "../../helpers/isEmpty";
 import { searchRepos } from "../../store/reducers/action-creators/repos";
+import { IRepo } from "../../model/IRepo";
 
 const RepoListContainer: FC = () => {
   const [storedData, setStoredData, getStoredData, removeStoredData] = useLocalStorage<IStorage>("storedData", {} as IStorage)
   const [searchValue, setSearchValue] = useState('')
   const [searcShow, setSearchShow] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
-  const [itemsToShow, setItemsToShow] = useState(10)
   const { reposes, isLoading, error, pageInfo, repositoryCount } = useAppSelector(state => state.reposSlice)
   let perPage = 35//26= 10 - 10 -6
   const totalPages = Math.ceil(repositoryCount / perPage);
   const lastPage = Math.ceil(reposes.length / 10)//3
   const [startPage, setStartPage] = useState(-reposes.length)
   const [endPage, setEndPage] = useState(currentPage * 10)
+  const {user}=useAppSelector(state=>state.authSlice)
   let storageState: IStorage = {
     search: "",
     first: perPage,
@@ -35,12 +35,10 @@ const RepoListContainer: FC = () => {
     query:""
   }
 
-  //let itemsToShow=Math.floor(repositoryCount / 10)
-
   const dispatch = useDispatch()
 
   const cleareFilter = () => {
-    const query = `user:${logedUser}`
+    const query = `user:${user.login}`
     const searchData: ISearch = {
       query,
       first: perPage,
@@ -90,7 +88,7 @@ const RepoListContainer: FC = () => {
 
   const onPageChange = (page: number) => {
     if (!searchValue && page === currentPage) return;
-    const query = !searchValue ? `user:${logedUser} ${searchValue}` : searchValue;
+    const query = !searchValue ? `user:${user.login} ${searchValue}` : searchValue;
     let after = '';
     let before = '';
     const searchData: ISearch = {
@@ -112,7 +110,6 @@ const RepoListContainer: FC = () => {
       setStartPage(10)
       setEndPage((reposes.length + 10) - (reposes.length - 10))
     }
-    console.log("*******************")
     setStoredData({
       first: perPage,
       startPage,
@@ -135,7 +132,7 @@ const RepoListContainer: FC = () => {
     }
   }, [searchValue])
 
-  useEffect(() => {
+  useMemo(() => {
     const repoData = getStoredData()
     if (!isEmpty(repoData)) {
       setStartPage(repoData?.startPage)
@@ -145,7 +142,7 @@ const RepoListContainer: FC = () => {
       setSearchValue(repoData?.search)
     }
   }, [])
-
+   
   if (error) return <p>Error :{error}</p>;
 
   return <div className={styles.list__container}>
@@ -169,9 +166,9 @@ const RepoListContainer: FC = () => {
           ? 'Not data found'
           : reposes
             .slice(startPage, endPage)
-            .map((node: any, index: number) => {
-              const repo = node.node
-              return <Fragment key={repo.pushedAt}><span>{index + 1}</span><Repo repo={repo}/></Fragment>
+            .map((node: any) => {
+              const repo:IRepo = node.node
+              return <Repo repo={repo} key={repo.pushedAt}/>
             })
       }
     </ul>
@@ -186,23 +183,3 @@ const RepoListContainer: FC = () => {
   </div>
 }
 export default RepoListContainer
-   /* if (searchValue) {
-setStartPage((-reposes.length % 10) - 5)
-}*/
-/*  if (page < currentPage) {
-    console.log("page<currentPage")
-    setStartPage(10)
-    setEndPage((reposes.length + 10) - (reposes.length - 10))
- 
-    if (searchValue && page > 2) {
-      searchData.before
-      searchData.after = reposes[page - 3]?.cursor
-    }
-  }*/
-
-
-/* after = reposes[lastPage - 1]?.cursor; // Cursor of the last item on the previous page
- before = reposes[(page - 2) * reposes.length]?.cursor; // End of the list; Cursor of the last item on the current page
- after = reposes[(page - 2) * 10]?.cursor; // Cursor of the last item on the previous page
- before = reposes[(page * 10)]?.cursor; // Cursor of the last item on the current page
- */

@@ -6,5 +6,6 @@ stargazerCount:number,
 url:string,
 __typename:string
 repository:any,
-cursor:string
+cursor:string,
+
 }
