@@ -22,14 +22,15 @@ import { history } from '../helpers/history';
   const errorLink = onError(({ graphQLErrors, networkError }) => {
     if (graphQLErrors) {
       graphQLErrors.forEach((error) => {
-        // Handle GraphQL errors here
+        
         console.log('GraphQL Error:', error.message);
       });
     }
     if (networkError) {
-      // Handle network errors here
+     
       console.log('Network Error:', networkError);
-      history.push('/')
+      localStorage.removeItem('token')
+      history.push('/auth')
     }
   });
 
