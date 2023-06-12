@@ -3,8 +3,8 @@ const Authorization=lazy(() => import("../pages/Authorization/Authorization"));
 const Home=lazy(() => import("../pages/Home/Home"));
 const RepoPage=lazy(() => import("../pages/RepoPage/RepoPage"));
 export enum RoutesNames {
-    AUTH = "/",
-    REPOS= "/:repoOwner",
+    AUTH = "/auth",
+    REPOS= "/",
     REPO_PAGE= "/:repoOwner/:repoName",
 }
 export interface IRoute {

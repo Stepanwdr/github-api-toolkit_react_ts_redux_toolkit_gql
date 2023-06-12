@@ -5,7 +5,7 @@ import isEmpty from "../../../helpers/isEmpty"
 
 const Navbar: FC = () => {
   const { user } = useAppSelector(state => state.authSlice)
-
+  
   if (isEmpty(user)) {
     return null
   }

@@ -1,4 +1,4 @@
-import { FC, Fragment, SyntheticEvent, useEffect, useMemo, useState } from "react";
+import { FC,  SyntheticEvent,  useMemo, useState } from "react";
 import styles from './RepoListContainer.module.css'
 import Repo from "./Repo/Repo";
 import RepoSearchInput from "../RepoSearchInput/RepoSearchInput";

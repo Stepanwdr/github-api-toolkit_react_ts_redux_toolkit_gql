@@ -21,7 +21,7 @@ const App: FC = () => {
 
     useEffect(() => {
         if (!isEmpty(user)) {
-            navigate(`/${user.login}`)
+            navigate(`/`)
         }
     }, [isAuth, user])
 
