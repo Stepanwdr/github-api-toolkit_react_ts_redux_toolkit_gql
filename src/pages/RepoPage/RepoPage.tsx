@@ -2,9 +2,11 @@ import { FC, useEffect } from "react";
 import styles from './RepoPage.module.css'
 import RepoInfo from "../../components/RepoInfo/RepoInfo";
 import { useParams } from "react-router-dom";
-import { getReposInfo } from "../../store/reducers/ActionCreators";
+
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "../../hooks/redux";
+import { getReposInfo } from "../../store/reducers/action-creators/repos";
+import AppLayout from "../../components/AppLayout/AppLayout";
 
 const RepoPage: FC = () => {
       const { repoOwner, repoName } = useParams()
@@ -16,8 +18,8 @@ const RepoPage: FC = () => {
             }
       }, [repoName])
 
-      return <div className={styles.main}>
+      return <AppLayout>
             <RepoInfo repo={currentReposInfo} />
-      </div>
+      </AppLayout>
 }
 export default RepoPage

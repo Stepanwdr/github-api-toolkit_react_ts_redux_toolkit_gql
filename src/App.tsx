@@ -1,14 +1,10 @@
-import { RouterProvider } from "react-router-dom"
-import { router } from "./main"
+import { Outlet } from "react-router-dom"
 import "./App.css"
-import AppLayout from "./components/AppLayout/AppLayout"
+import { FC } from "react"
 
-const App =()=> {
+const App: FC = () => {
   return (
-    < AppLayout>
-         <RouterProvider router={router} />
-    </AppLayout>
+        <Outlet/>
   )
 }
-
 export default App

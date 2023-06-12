@@ -1,11 +1,16 @@
-import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
+import { ApolloClient, InMemoryCache, createHttpLink, ApolloLink } from '@apollo/client';
+import { onError } from "@apollo/client/link/error"
 import { setContext } from "@apollo/client/link/context";
-import { token } from "../consts/token";
+import { history } from '../helpers/history';
 
-const httpLink = createHttpLink({
-    uri: 'https://api.github.com/graphql', 
+  const httpLink = createHttpLink({
+    uri: 'https://api.github.com/graphql',
   });
+  
   const authLink = setContext((_, { headers }) => {
+    let token= localStorage.getItem('token')
+    token = token ? JSON.parse(token) : ''
+  
     return {
       headers: {
         ...headers,
@@ -13,9 +18,25 @@ const httpLink = createHttpLink({
       },
     };
   });
-  export const client = new ApolloClient({
-    link: authLink.concat(httpLink),
+
+  const errorLink = onError(({ graphQLErrors, networkError }) => {
+    if (graphQLErrors) {
+      graphQLErrors.forEach((error) => {
+        // Handle GraphQL errors here
+        console.log('GraphQL Error:', error.message);
+      });
+    }
+    if (networkError) {
+      // Handle network errors here
+      console.log('Network Error:', networkError);
+      history.push('/')
+    }
+  });
+
+   export const client = new ApolloClient({
+    link: ApolloLink.from([errorLink, authLink.concat(httpLink)]),
     cache: new InMemoryCache(),
   });
-  
-  
+
+
+

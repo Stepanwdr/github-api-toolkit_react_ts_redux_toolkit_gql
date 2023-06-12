@@ -1,5 +1,4 @@
 import { FC } from "react"
-import { IRepo } from "../../model/IRepo"
 import avatarImg from "../../assets/images/avatar.png"
 import styles from './RepoInfo.module.css'
 import { Link } from "react-router-dom"
@@ -8,7 +7,6 @@ interface RepoInfoProps {
     repo: any
 }
 const RepoInfo: FC<RepoInfoProps> = ({ repo }) => {
-    console.log(repo)
     const {
         name,
         pushedAt,
@@ -19,7 +17,7 @@ const RepoInfo: FC<RepoInfoProps> = ({ repo }) => {
     } = repo
 
     return <div className={styles.info__container}>
-        <Link to={'/'} className={styles.back__btn}>← back</Link>
+        <Link to={`/${owner?.login}`} className={styles.back__btn}>← back</Link>
         <div className={styles.info__top}>
             <h3 className={styles.repo__name}>{name}</h3>
             <span className={styles.title}>

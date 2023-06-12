@@ -4,7 +4,7 @@ import Repo from "./Repo/Repo";
 import RepoSearchInput from "../RepoSearchInput/RepoSearchInput";
 import { useAppSelector } from "../../hooks/redux";
 import { useDispatch } from "react-redux";
-import { searchRepos } from "../../store/reducers/ActionCreators";
+
 import Paginator from "../Paginator/Paginator";
 import SearchActionList from "../SearchActionList/SearchActionList";
 import { ISearch } from "../../model/ISearch";
@@ -12,6 +12,7 @@ import { logedUser } from "../../consts/token";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import { IStorage } from "../../types/IStorage";
 import isEmpty from "../../helpers/isEmpty";
+import { searchRepos } from "../../store/reducers/action-creators/repos";
 
 const RepoListContainer: FC = () => {
   const [storedData, setStoredData, getStoredData, removeStoredData] = useLocalStorage<IStorage>("storedData", {} as IStorage)

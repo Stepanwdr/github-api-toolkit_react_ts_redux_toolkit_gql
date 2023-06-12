@@ -34,7 +34,9 @@ export const SEARCH_REPOSITORIES = gql`
           ... on Repository {
           name
           owner {
-              login
+            login
+           avatarUrl
+             url
             }
           url
           stargazerCount

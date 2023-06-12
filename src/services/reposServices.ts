@@ -2,7 +2,6 @@ import { client } from "../graphql";
 import { SEARCH_REPOSITORIES, GET_REPOSITORY } from "../graphql/repos";
 import { IRepo } from "../model/IRepo";
 import { ISearch } from "../model/ISearch";
-
 export class reposServices {
   static async fetchSearchRepos(searchData: ISearch): Promise<any> {
     const { query, after, before, first, last } = searchData

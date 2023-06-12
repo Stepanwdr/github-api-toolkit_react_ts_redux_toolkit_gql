@@ -1,29 +1,38 @@
-import { FC, ReactNode } from "react";
+import { FC, ReactNode, useEffect } from "react";
 import styles from "./AppLayout.module.css"
-
 import Navbar from "./Navbar/Navbar";
-import { logedUser } from "../../consts/token";
 import Logo from "../Logo/Logo";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { authSlice } from "../../store/reducers/authSlice";
+import { useAppSelector } from "../../hooks/redux";
+import { getUser } from "../../store/reducers/action-creators/auth";
 
 interface AppLayoutProps {
     children: ReactNode
 }
 
 const AppLayout: FC<AppLayoutProps> = ({ children }) => {
+    const { user } = useAppSelector(state => state.authSlice)
+
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
     const logOut = () => {
+        dispatch(authSlice.actions.setAuth(false))
+        navigate("/")
         localStorage.clear()
     }
-
+    useEffect(() => {
+        dispatch( getUser())
+    }, [])
     return <div className={styles.layout}>
         <header className={styles.header}>
             <div className={styles.container}>
                 <Logo />
                 <Navbar
-                    username={logedUser}
-                    avatar={"https://avatars.githubusercontent.com/u/71698995?u=56ef2b5ed7fa2cbbe8b08f2e2e1236ca0c96921a&v=4"}
+                     user={user}
                     logOut={logOut}
                 />
-
             </div>
         </header>
 

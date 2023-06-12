@@ -1,9 +1,11 @@
 import { combineReducers, configureStore, getDefaultMiddleware } from "@reduxjs/toolkit"
 import reposSlice from "./reducers/reposSlice"
+import authSlice from "./reducers/authSlice"
 
 
 const rootReducer=combineReducers({
-    reposSlice
+    reposSlice,
+    authSlice
    })
 export const setupStore=()=>{
     return configureStore({

@@ -1,33 +1,35 @@
-import React from 'react'
 import ReactDOM from 'react-dom/client'
-import {createBrowserRouter} from "react-router-dom";
-import { ApolloProvider} from '@apollo/client';
-import { client } from './graphql'
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { ApolloProvider } from '@apollo/client';
 import Home from './pages/Home/Home';
 import RepoPage from './pages/RepoPage/RepoPage';
-import {onError} from '@apollo/client/link/error'
-import App from './App';
 import './index.css'
 import { Provider } from 'react-redux';
 import { setupStore } from './store/store';
-const store=setupStore()
+import Authorization from './pages/Authorization/Authorization';
+import { client } from './graphql';
+import App from './App';
+const store = setupStore()
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home/>,
+    element: <Authorization />,
+  },
+  {
+    path: "/:repoOwner",
+    element: <Home />,
   },
   {
     path: "/:repoOwner/:repoName",
-    element: <RepoPage/>,
+    element: <RepoPage />,
   },
+
 ]);
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
-    <ApolloProvider client={client}>
-      <Provider store={store}>
-      <App/>
-      </Provider>
-     
-    </ApolloProvider>
-  </React.StrictMode>,
+    <Provider store={store}>
+      <RouterProvider router={router} />
+      <ApolloProvider client={client}>
+        <App/>
+      </ApolloProvider>
+    </Provider>
 )

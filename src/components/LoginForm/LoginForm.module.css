@@ -1,0 +1,32 @@
+.form_container{
+background: #1d1d1d;
+width: 350px;
+padding: 20px;
+border-radius: 10px;
+}
+.input__container{
+   margin-bottom: 10px;
+   max-width: 300px;
+ }
+ .input__container input{
+  border: none;
+    padding: 10px;
+    outline: none;
+    background-color: #010409;
+    color:white;
+    width: 100%;
+    border-radius: 20px;
+    outline: 2px solid var(--repo-text-dark);
+    width: 100%;
+ }
+ .input__container input:focus{
+ outline: 2px solid #0969da;
+ }
+.login__btn{
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background-color: rgb(92, 92, 92);
+    cursor: pointer;
+    color: white;
+}

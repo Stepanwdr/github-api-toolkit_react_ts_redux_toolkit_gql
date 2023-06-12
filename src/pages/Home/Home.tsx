@@ -1,11 +1,10 @@
 import { FC } from "react";
-import styles from './Home.module.css'
 import RepoList from "../../components/RepoListContainer/RepoListContainer";
+import AppLayout from "../../components/AppLayout/AppLayout";
 
 const Home: FC = () => {
-    return <div className={styles.main}>
+    return <AppLayout>
         <RepoList />
-       
-    </div>
+    </AppLayout>
 }
 export default Home
