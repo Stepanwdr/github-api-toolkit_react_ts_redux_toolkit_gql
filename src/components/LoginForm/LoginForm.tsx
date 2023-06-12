@@ -10,7 +10,7 @@ const LoginForm: FC<LoginFormProps> = ({ onLogin }) => {
     const [tokenValue, setTokenValue] = useState(token)
     const handleSubmit = async (e: SyntheticEvent) => {
         e.preventDefault();
-        onLogin(token);
+        onLogin(tokenValue);
     };
     return (
         <div className={styles.form_container}>

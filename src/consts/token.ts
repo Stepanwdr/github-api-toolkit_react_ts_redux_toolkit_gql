@@ -1,2 +1,2 @@
-export const token ='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'
+export const token ='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'
 export const logedUser='Stepanwdr'
