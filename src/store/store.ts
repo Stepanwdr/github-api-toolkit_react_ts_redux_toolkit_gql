@@ -1,4 +1,4 @@
-import { combineReducers, configureStore, getDefaultMiddleware } from "@reduxjs/toolkit"
+import { combineReducers, configureStore } from "@reduxjs/toolkit"
 import reposSlice from "./reducers/reposSlice"
 import authSlice from "./reducers/authSlice"
 
@@ -10,8 +10,6 @@ const rootReducer=combineReducers({
 export const setupStore=()=>{
     return configureStore({
         reducer:rootReducer,
-        middleware:()=>
-        getDefaultMiddleware().concat()
     })
 }
 
