@@ -1,12 +1,13 @@
+import { useNavigate } from "react-router-dom"
 import "./App.css"
 import { FC, useEffect } from "react"
-import AppLayout from "./components/AppLayout/AppLayout"
-import { useAppSelector } from "./hooks/redux"
-import {  useNavigate } from "react-router-dom"
-import { getUser } from "./store/reducers/action-creators/auth"
-import isEmpty from "./helpers/isEmpty"
+import { useAppSelector } from "../hooks/redux"
 import { useDispatch } from "react-redux"
-import AppRouter from "./pages"
+import { getUser } from "../store/reducers/action-creators/auth"
+import isEmpty from "../helpers/isEmpty"
+import AppLayout from "../components/AppLayout/AppLayout"
+import AppRouter from "../pages"
+
 
 const App: FC = () => {
     const { isAuth, user } = useAppSelector(state => state.authSlice)

@@ -27,7 +27,6 @@ import { history } from '../helpers/history';
       });
     }
     if (networkError) {
-     
       console.log('Network Error:', networkError);
       localStorage.removeItem('token')
       history.push('/auth')

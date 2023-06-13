@@ -4,8 +4,8 @@ import { AppDispatch } from "../../store"
 import { reposSlice } from "../reposSlice"
 
 
-export const searchRepos=(searchData:ISearch):any=>{
-    return async(dispatch:AppDispatch)=>{
+export const searchRepos=(searchData:ISearch)=>{
+    return async(dispatch:AppDispatch):Promise<any>=>{
       try{
         dispatch(reposSlice.actions.reposFetching())
         const res=await reposServices.fetchSearchRepos(searchData)
@@ -16,7 +16,7 @@ export const searchRepos=(searchData:ISearch):any=>{
     }
   }
   
-  export const getReposInfo=(owner:string,repoName:string):any=>{
+  export const getReposInfo=(owner:string,repoName:string)=>{
    return async (dispatch:AppDispatch):Promise<any>=>{
      try{
       dispatch(reposSlice.actions.currentReposFetch())

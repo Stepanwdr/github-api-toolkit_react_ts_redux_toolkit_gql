@@ -33,5 +33,5 @@ export const authSlice = createSlice({
         
     }
 })
-export const { setAuth, logOut } = authSlice.actions;
+export const { setAuth, logOut,setToken,setUser } = authSlice.actions;
 export default authSlice.reducer

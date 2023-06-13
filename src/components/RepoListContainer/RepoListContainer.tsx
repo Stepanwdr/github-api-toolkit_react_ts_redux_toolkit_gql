@@ -19,10 +19,9 @@ const RepoListContainer: FC = () => {
   const [searchValue, setSearchValue] = useState('')
   const [searcShow, setSearchShow] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
-  const { reposes, isLoading, error, pageInfo, repositoryCount } = useAppSelector(state => state.reposSlice)
-  let perPage = 35//26= 10 - 10 -6
-  const totalPages = Math.ceil(repositoryCount / perPage);
-  const lastPage = Math.ceil(reposes.length / 10)//3
+  const { reposes, isLoading, error, repositoryCount } = useAppSelector(state => state.reposSlice)
+  let perPage = 35
+  const lastPage = Math.ceil(reposes.length / 10)
   const [startPage, setStartPage] = useState(-reposes.length)
   const [endPage, setEndPage] = useState(currentPage * 10)
   const {user}=useAppSelector(state=>state.authSlice)
@@ -123,9 +122,7 @@ const RepoListContainer: FC = () => {
   const changeNextPage = (searchData: ISearch) => {
     dispatch(searchRepos(searchData));
   }
-  const changePrevPage = (searchData: ISearch) => {
-    dispatch(searchRepos(searchData));
-  }
+ 
   useMemo(() => {
     if (!searchValue && !isEmpty(user)) {
     cleareFilter()

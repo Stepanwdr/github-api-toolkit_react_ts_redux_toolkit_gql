@@ -12,7 +12,7 @@ const SearchActionList: FC<SearchActionListProps> = ({ searchValue, search }) =>
             <button
                 onClick={search}
                 className={styles.search__value__btn}
-                >
+            >
                 {searchValue}
                 <span>Search All Of Github</span>
             </button>

@@ -1,11 +1,11 @@
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from "react-router-dom";
 import { ApolloProvider } from '@apollo/client';
-import './index.css'
+import './styles/global.css'
 import { Provider } from 'react-redux';
 import { setupStore } from './store/store';
 import { client } from './graphql';
-import App from './App';
+import App from './App/App';
 
 const store = setupStore()
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
